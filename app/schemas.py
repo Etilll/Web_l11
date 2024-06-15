@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from datetime import date
 
-class ResponseContact(BaseModel):
+class PostContact(BaseModel):
     name:str = Field(title="Name of a person in question", min_length=1, max_length=20)
     surname:str = Field(title="Surname of a person in question", min_length=1, max_length=35)
     mail:str = Field(title="Email of a person in question", min_length=1, max_length=50, pattern="\S{3,}@[a-zA-Z]{2,}\.[a-zA-Z]{2,}")
@@ -10,3 +10,6 @@ class ResponseContact(BaseModel):
 
     class Config:
         from_attributes = True
+
+class ResponseContact(PostContact):
+    id:int
